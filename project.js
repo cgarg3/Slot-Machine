@@ -9,6 +9,23 @@
 // eslint-disable-next-line no-undef
 const prompt = require("prompt-sync")();
 
+const ROWS = 3;
+const COLS = 3;
+
+const SYMBOLS_COUNT = {
+    "A": 2,
+    "B": 4,
+    "C": 6,
+    "D": 8
+}
+
+const SYMBOLS_VALUES = {
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2
+}
+
 function deposit() {
     // eslint-disable-next-line no-constant-condition
     while(true){
@@ -53,6 +70,18 @@ function getBet(balance, lines){
     }
 }   
 }
+
+function spin() {
+    const symbols = [];
+    for (const [symbol, count] of Object.entries(SYMBOLS_COUNT)){
+        for (let i = 0; i < count; i++){
+            symbols.push(symbol);
+        }
+    }
+    console.log(symbols);
+}
+
+spin();
 
 // eslint-disable-next-line no-unused-vars
 let balance = deposit();
