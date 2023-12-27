@@ -39,9 +39,24 @@ function getNumberOfLines(){
 }
 }
 
+function getBet(balance, lines){
+  // eslint-disable-next-line no-constant-condition
+  while(true){
+    const bet = prompt("Enter the bet per line: ");
+    const numberBet = parseFloat(bet);
 
-const depositAmount = deposit();
-console.log(depositAmount);
+    if (isNaN(numberBet) || numberBet <= 0 || numberBet > balance / lines) {
+        console.log("Invalid bet, try again.");
+    }
+    else {
+        return numberBet;
+    }
+}   
+}
 
+// eslint-disable-next-line no-unused-vars
+let balance = deposit();
+// eslint-disable-next-line no-unused-vars
 const lines = getNumberOfLines();
-console.log(lines);
+// eslint-disable-next-line no-unused-vars
+const bet = getBet(balance, lines);
