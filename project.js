@@ -47,7 +47,7 @@ function getNumberOfLines(){
     const lines = prompt("Enter the number of lines to bet on (1-3): ");
     const numberOfLines = parseFloat(lines);
 
-    if (isNaN(numberOfLines) || numberOfLines <= 0 || numberOfLines >= 3) {
+    if (isNaN(numberOfLines) || numberOfLines <= 0 || numberOfLines > 3) {
         console.log("Invalid number of lines, try again.");
     }
     else {
@@ -78,14 +78,26 @@ function spin() {
             symbols.push(symbol);
         }
     }
-    console.log(symbols);
+
+    const reels = [[]];
+    for(let i = 0; i < COLS; i++){
+         reels.push([]);
+        const reelSymbols = [...symbols];
+        for(let j = 0; j < ROWS; j++){
+            const randomIndex = Math.floor(Math.random() * reelSymbols.length)
+            const selectedSymbols = reelSymbols[randomIndex];
+            reels[i].push(selectedSymbols);
+            reelSymbols.splice(randomIndex, 1);
+        }
+    }
+    return reels;
 }
 
-spin();
+function transpose(reels) {
+    const rows = [];
+}
 
-// eslint-disable-next-line no-unused-vars
 let balance = deposit();
-// eslint-disable-next-line no-unused-vars
 const lines = getNumberOfLines();
-// eslint-disable-next-line no-unused-vars
 const bet = getBet(balance, lines);
+const reels = spin();
